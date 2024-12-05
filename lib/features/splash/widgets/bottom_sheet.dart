@@ -88,28 +88,28 @@ class BottomSheetWidget extends StatelessWidget {
                 ),
                 const SizedBox(width: 10), // Space between buttons
                 // Sign Up Button
+                // Sign Up Button
                 Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Navigate to Sign Up Screen
-                      Navigator.pushNamed(context, '/signup');
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF4A90E2), // Primary color
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: const Text(
-                      'Sign Up',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
+    child: ElevatedButton(
+    onPressed: () {
+    Navigator.pushNamed(context, '/signup'); // Navigate to the Signup screen
+    },
+    style: ElevatedButton.styleFrom(
+    backgroundColor: const Color(0xFF4A90E2), // Primary color
+    elevation: 0,
+    shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(10),
+    ),
+    ),
+    child: const Text(
+    'Sign Up',
+    style: TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.bold,
+    ),
+    ),
+    ),
+    ),
               ],
             ),
           ),

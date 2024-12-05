@@ -37,158 +37,159 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+        body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Logo at the top-left corner
-              Container(
-                width: 50,
-                height: 50,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/logo.png'), // Replace with your logo
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
+        padding: const EdgeInsets.all(16.0),
+    child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+    // Logo at the top-left corner
+    Container(
+    width: 50,
+    height: 50,
+    decoration: const BoxDecoration(
+    image: DecorationImage(
+    image: AssetImage('assets/logo.png'), // Replace with your logo
+    ),
+    ),
+    ),
+    const SizedBox(height: 20),
 
-              // Welcome Text
-              const Text(
-                'Welcome 👋 to Demoz Payroll',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'Sign up to continue',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey,
-                ),
-              ),
-              const SizedBox(height: 32),
+    // Welcome Text
+    const Text(
+    'Welcome 👋 to Demoz Payroll',
+    style: TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    ),
+    ),
+    const SizedBox(height: 8),
+    const Text(
+    'Sign up to continue',
+    style: TextStyle(
+    fontSize: 16,
+    color: Colors.grey,
+    ),
+    ),
+    const SizedBox(height: 32),
 
-              // Email Field
-              TextFormField(
-                controller: _emailController,
-                decoration: InputDecoration(
-                  labelText: 'Email Address',
-                  hintText: 'Enter your email',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
+    // Email Field
+    TextFormField(
+    controller: _emailController,
+    decoration: InputDecoration(
+    labelText: 'Email Address',
+    hintText: 'Enter your email',
+    border: OutlineInputBorder(
+    borderRadius: BorderRadius.circular(10),
+    ),
+    ),
+    ),
+    const SizedBox(height: 16),
 
-              // Password Field
-              TextFormField(
-                controller: _passwordController,
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  hintText: 'Enter your password',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  suffixIcon: const Icon(Icons.visibility_off),
-                ),
-              ),
-              const SizedBox(height: 32),
+    // Password Field
+    TextFormField(
+    controller: _passwordController,
+    obscureText: true,
+    decoration: InputDecoration(
+    labelText: 'Password',
+    hintText: 'Enter your password',
+    border: OutlineInputBorder(
+    borderRadius: BorderRadius.circular(10),
+    ),
+    suffixIcon: const Icon(Icons.visibility_off),
+    ),
+    ),
+    const SizedBox(height: 32),
 
-              // Sign Up Button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: _isFormFilled
-                      ? () {
-                    // Sign up logic here
-                  }
-                      : null, // Disable the button if form is not filled
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: _isFormFilled
-                        ? const Color(0xFF4A90E2)
-                        : Colors.grey,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: const Text(
-                    'Sign Up',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
 
-              // Divider with "or continue with"
-              Row(
-                children: [
-                  Expanded(
-                    child: Divider(
-                      thickness: 1,
-                      color: Colors.grey.shade300,
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text(
-                      'or continue with',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ),
-                  Expanded(
-                    child: Divider(
-                      thickness: 1,
-                      color: Colors.grey.shade300,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-
-              // Google Login Button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    // Google sign-in logic here
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    side: const BorderSide(color: Colors.grey),
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  icon: Image.asset(
-                    'assets/google_logo.jpg', // Replace with your Google logo asset
-                    height: 24,
-                  ),
-                  label: const Text(
-                    'Continue with Google',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-            ],
+      // Sign Up Button
+      SizedBox(
+        width: double.infinity,
+        child: ElevatedButton(
+          onPressed: _isFormFilled
+              ? () {
+            Navigator.pushNamed(context, '/register');
+          }
+              : null, // Disable the button if form is not filled
+          style: ElevatedButton.styleFrom(
+            backgroundColor: _isFormFilled
+                ? const Color(0xFF4A90E2)
+                : Colors.grey,
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          child: const Text(
+            'Sign Up',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
         ),
       ),
+      const SizedBox(height: 16),
+
+      // Divider with "or continue with"
+      Row(
+        children: [
+          Expanded(
+            child: Divider(
+              thickness: 1,
+              color: Colors.grey.shade300,
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              'or continue with',
+              style: TextStyle(color: Colors.grey),
+            ),
+          ),
+          Expanded(
+            child: Divider(
+              thickness: 1,
+              color: Colors.grey.shade300,
+            ),
+          ),
+        ],
+      ),
+      const SizedBox(height: 16),
+
+      // Google Login Button
+      SizedBox(
+        width: double.infinity,
+        child: ElevatedButton.icon(
+          onPressed: () {
+            // Google sign-in logic here
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.white,
+            side: const BorderSide(color: Colors.grey),
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          icon: Image.asset(
+            'assets/google_logo.jpg', // Replace with your Google logo asset
+            height: 24,
+          ),
+          label: const Text(
+            'Continue with Google',
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.black,
+            ),
+          ),
+        ),
+      ),
+    ],
+    ),
+        ),
+        ),
     );
   }
 }
