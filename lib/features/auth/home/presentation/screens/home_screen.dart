@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import '../../../../managment/presentation/screens/managment_screen.dart';
 import '../../widgets/dynamic_pie_chart.dart'; // Import the pie chart widget
 
 class HomeScreen extends StatefulWidget {
@@ -30,180 +31,188 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: const Text(
-            'Home',
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-          ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                // Settings button logic
-              },
-              icon: const Icon(Icons.settings, color: Colors.black),
-            ),
-          ],
-        ),
+      appBar: AppBar(
         backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-    child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-    // Top Info Cards
-    Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-    _buildInfoCard('Number of Employees', '$numberOfEmployees',
-    Colors.blue[50], Colors.blue),
-    _buildInfoCard(
-    'Income Tax Paid', '2000', Colors.green[50], Colors.green),
-    ],
-    ),
-    const SizedBox(height: 10),
-    Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-    _buildInfoCard('Pension Tax Paid', '4', Colors.teal[50],
-    Colors.teal),
-    _buildInfoCard(
-    'Employees Performance', '95 %', Colors.red[50], Colors.red),
-    ],
-    ),
-    const SizedBox(height: 20),
-
-    // Tabs Section
-    Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-    _buildTabButton('Upcoming', isSelected: true),
-    _buildTabButton('Past', isSelected: false),
-    ],
-    ),
-    const SizedBox(height: 20),
-
-
-    // Date Section
-    Card(
-    shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(12),
-    ),
-    elevation: 4,
-    child: Padding(
-    padding: const EdgeInsets.all(16),
-    child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-    Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-    Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: const [
-    Text(
-    'Date',
-    style: TextStyle(
-    fontWeight: FontWeight.bold, fontSize: 16),
-    ),
-    SizedBox(height: 4),
-    Text(
-    'Aug 28, 2024 - Sep 5, 2024',
-    style: TextStyle(color: Colors.grey),
-    ),
-    ],
-    ),
-    ElevatedButton(
-    onPressed: () {
-    // Pay Now logic
-    },
-    style: ElevatedButton.styleFrom(
-    backgroundColor: Colors.red[100],
-    foregroundColor: Colors.red,
-    ),
-    child: const Text('Pay Now'),
-    ),
-    ],
-    ),
-    const Divider(height: 20, color: Colors.grey),
-    Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: const [
-    Text('Income Tax',
-    style: TextStyle(color: Colors.grey)),
-    Text('4000 etb',
-    style: TextStyle(fontWeight: FontWeight.bold)),
-    ],
-    ),
-    const SizedBox(height: 8),
-    Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: const [
-    Text('Pension Tax',
-    style: TextStyle(color: Colors.grey)),
-    Text('5000 etb',
-    style: TextStyle(fontWeight: FontWeight.bold)),
-    ],
-    ),
-    const SizedBox(height: 8),
-    const Text(
-    'August Tax on Due',
-    style: TextStyle(
-    color: Colors.red, fontWeight: FontWeight.bold),
-    ),
-    ],
-    ),
-    ),
-    ),
-    const SizedBox(height: 20),
-
-
-      // Bottom Graph Cards (Swapped Positions)
-      Row(
-        children: [
-          Expanded(
-            child: _buildGraphCard(
-              title: 'Employee Composition',
-              content: EmployeeComposition(
-                maleEmployees: 65,
-                femaleEmployees: 35,
-              ), // Embedding the pie chart here
-            ),
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: _buildGraphCard(
-              title: 'Tax Summary',
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    '9,349.85 etb',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    '49.98% increase',
-                    style: TextStyle(fontSize: 14, color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
+        elevation: 0,
+        title: const Text(
+          'Home',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              // Settings button logic
+            },
+            icon: const Icon(Icons.settings, color: Colors.black),
           ),
         ],
       ),
-    ],
-    ),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Top Info Cards
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildInfoCard('Number of Employees', '$numberOfEmployees',
+                    Colors.blue[50], Colors.blue),
+                _buildInfoCard(
+                    'Income Tax Paid', '2000', Colors.green[50], Colors.green),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildInfoCard('Pension Tax Paid', '4', Colors.teal[50],
+                    Colors.teal),
+                _buildInfoCard(
+                    'Employees Performance', '95 %', Colors.red[50], Colors.red),
+              ],
+            ),
+            const SizedBox(height: 20),
+
+            // Tabs Section
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildTabButton('Upcoming', isSelected: true),
+                _buildTabButton('Past', isSelected: false),
+              ],
+            ),
+            const SizedBox(height: 20),
+
+            // Date Section
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              elevation: 4,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Date',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16),
+                            ),
+                            SizedBox(height: 4),
+                            Text(
+                              'Aug 28, 2024 - Sep 5, 2024',
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                          ],
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            // Pay Now logic
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red[100],
+                            foregroundColor: Colors.red,
+                          ),
+                          child: const Text('Pay Now'),
+                        ),
+                      ],
+                    ),
+                    const Divider(height: 20, color: Colors.grey),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Text('Income Tax',
+                            style: TextStyle(color: Colors.grey)),
+                        Text('4000 etb',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Text('Pension Tax',
+                            style: TextStyle(color: Colors.grey)),
+                        Text('5000 etb',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'August Tax on Due',
+                      style: TextStyle(
+                          color: Colors.red, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            // Bottom Graph Cards (Swapped Positions)
+            Row(
+              children: [
+                Expanded(
+                  child: _buildGraphCard(
+                    title: 'Employee Composition',
+                    content: EmployeeComposition(
+                      maleEmployees: 65,
+                      femaleEmployees: 35,
+                    ), // Embedding the pie chart here
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: _buildGraphCard(
+                    title: 'Tax Summary',
+                    content: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          '9,349.85 etb',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          '49.98% increase',
+                          style: TextStyle(fontSize: 14, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
+          if (index == 1) {
+            // Navigate to ManagementScreen
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ManagementScreen(),
+              ),
+            );
+          } else {
+            setState(() {
+              _currentIndex = index;
+            });
+          }
         },
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
@@ -284,7 +293,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
 
   // Graph Card Builder
   Widget _buildGraphCard({required String title, required Widget content}) {
