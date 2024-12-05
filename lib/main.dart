@@ -6,12 +6,14 @@ import 'features/auth/home/presentation/screens/home_screen.dart';
 import 'features/auth/presentation/bloc/register_bloc.dart';
 import 'features/auth/presentation/screens/register_screen.dart';
 import 'features/auth/presentation/screens/signup_screen.dart';
-import 'features/splash/presentation/screens/splash_screen.dart'; // Import the splash screen
+import 'features/managment/presentation/screens/company_profile.dart';
+import 'features/managment/presentation/screens/managment_screen.dart'; // Import the management screen
+import 'features/splash/presentation/screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter(); // Initialize Hive
-  await Hive.openBox('your_box_name'); // Replace 'your_box_name' with the actual box name
+  await Hive.openBox('registration_data'); // Updated box name for consistency
   runApp(const MyApp());
 }
 
@@ -25,15 +27,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
+      initialRoute: '/splash',
       routes: {
-        '/': (context) => const SplashScreen(),
+        '/splash': (context) => const SplashScreen(),
         '/signup': (context) => const SignupScreen(),
         '/register': (context) => BlocProvider(
           create: (context) => RegisterBloc(),
           child: const RegisterScreen(),
         ),
         '/home': (context) => const HomeScreen(),
+        '/profile': (context) => const CompanyProfileScreen(),
+        '/management': (context) => const ManagementScreen(), // Add the management screen route
       },
     );
   }

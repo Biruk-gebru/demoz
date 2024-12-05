@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // Load data from Hive
   Future<void> _loadDataFromHive() async {
-    var box = await Hive.openBox('registration_data');
+    final box = await Hive.openBox('registration_data');
     setState(() {
       numberOfEmployees = box.get('numberOfEmployees', defaultValue: 0);
     });
@@ -158,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 20),
 
-            // Bottom Graph Cards (Swapped Positions)
+            // Bottom Graph Cards
             Row(
               children: [
                 Expanded(
@@ -167,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     content: EmployeeComposition(
                       maleEmployees: 65,
                       femaleEmployees: 35,
-                    ), // Embedding the pie chart here
+                    ),
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -200,18 +200,16 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
-          if (index == 1) {
-            // Navigate to ManagementScreen
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ManagementScreen(),
-              ),
-            );
-          } else {
-            setState(() {
-              _currentIndex = index;
-            });
+          setState(() {
+            _currentIndex = index;
+          });
+
+          if (index == 0) {
+            Navigator.pushReplacementNamed(context, '/home');
+          } else if (index == 1) {
+            Navigator.pushReplacementNamed(context, '/management');
+          } else if (index == 2) {
+            Navigator.pushReplacementNamed(context, '/profile');
           }
         },
         selectedItemColor: Colors.blue,
@@ -219,15 +217,15 @@ class _HomeScreenState extends State<HomeScreen> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: '',
+            label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today),
-            label: '',
+            label: 'Management',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: '',
+            label: 'Profile',
           ),
         ],
       ),

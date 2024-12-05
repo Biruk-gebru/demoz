@@ -1,3 +1,4 @@
+import 'package:demoz/features/managment/presentation/screens/add_employee.dart';
 import 'package:flutter/material.dart';
 
 class ManagementScreen extends StatelessWidget {
@@ -5,6 +6,8 @@ class ManagementScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int _currentIndex = 1;
+
     // Sample employee data
     final List<Map<String, String>> employees = [
       {
@@ -89,7 +92,10 @@ class ManagementScreen extends StatelessWidget {
           ),
           ElevatedButton.icon(
             onPressed: () {
-              // Add Employee logic
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AddEmployeeScreen()),
+              );
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green,
@@ -99,6 +105,7 @@ class ManagementScreen extends StatelessWidget {
             icon: const Icon(Icons.add),
             label: const Text('Add Employee'),
           ),
+
         ],
       ),
       body: Column(
@@ -186,19 +193,11 @@ class ManagementScreen extends StatelessWidget {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Container(
-                            color: Colors.blue[100],
-                            padding: const EdgeInsets.all(4.0),
-                            child: Text(employee['taxableEarnings']!),
-                          ),
+                          child: Text(employee['taxableEarnings']!),
                         ),
                         Expanded(
                           flex: 1,
-                          child: Container(
-                            color: Colors.blue[100],
-                            padding: const EdgeInsets.all(4.0),
-                            child: Text(employee['incomeTax']!),
-                          ),
+                          child: Text(employee['incomeTax']!),
                         ),
                         Expanded(
                           flex: 1,
@@ -214,10 +213,14 @@ class ManagementScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1,
+        currentIndex: _currentIndex,
         onTap: (index) {
           if (index == 0) {
-            Navigator.pop(context);
+            Navigator.pushReplacementNamed(context, '/home');
+          } else if (index == 1) {
+            Navigator.pushReplacementNamed(context, '/management');
+          } else if (index == 2) {
+            Navigator.pushReplacementNamed(context, '/profile');
           }
         },
         selectedItemColor: Colors.blue,
@@ -225,15 +228,15 @@ class ManagementScreen extends StatelessWidget {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: '',
+            label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today),
-            label: '',
+            label: 'Management',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: '',
+            label: 'Profile',
           ),
         ],
       ),
