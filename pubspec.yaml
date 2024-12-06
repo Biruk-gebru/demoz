@@ -16,13 +16,23 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  flutter_bloc: ^8.1.3 # Add flutter_bloc for state management
-  bloc: ^8.1.3         # Bloc core library for business logic
+  flutter_bloc: ^8.1.3 # State management
+  bloc: ^8.1.3         # Bloc core library
 
 dev_dependencies:
+  dart_style: 2.3.4 # Pinning to a version compatible with your current analyzer
+  build_runner: ^2.3.3
   flutter_test:
     sdk: flutter
+  mockito: ^5.3.2
+  hive_generator: ^2.0.1
   flutter_lints: ^4.0.0
+
+dependency_overrides:
+  dart_style: 2.3.5
+  analyzer: 5.10.0 # Compatible with dart_style 2.3.4
+
+
 
 flutter:
   uses-material-design: true

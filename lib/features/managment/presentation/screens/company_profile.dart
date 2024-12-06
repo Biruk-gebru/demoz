@@ -29,16 +29,13 @@ class _CompanyProfileScreenState extends State<CompanyProfileScreen> {
     try {
       profileBox = await Hive.openBox('registration_data');
       setState(() {
-        // Retrieving the data stored in Hive
-        companyName =
-            profileBox.get('Company name', defaultValue: companyName);
-        email = profileBox.get('email', defaultValue: email); // From SignUpScreen
-        phoneNumber =
-            profileBox.get('Phone Number', defaultValue: phoneNumber);
+        companyName = profileBox.get('Company name', defaultValue: companyName);
+        email = profileBox.get('email', defaultValue: email);
+        phoneNumber = profileBox.get('Phone Number', defaultValue: phoneNumber);
         address = profileBox.get('Address of the company', defaultValue: address);
         numberOfEmployees = int.tryParse(
-            profileBox.get('Number of employees', defaultValue: '0')) ??
-            0;
+          profileBox.get('Number of employees', defaultValue: '0'),
+        ) ?? 0;
       });
     } catch (e) {
       print('Error loading profile data: $e');
@@ -186,23 +183,17 @@ class _CompanyProfileScreenState extends State<CompanyProfileScreen> {
     required String value,
     required IconData icon,
   }) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Icon(icon, color: Colors.blue),
-        const SizedBox(width: 12),
-        Expanded(
-          child: TextFormField(
-            initialValue: value,
-            readOnly: true, // Make the field read-only
-            decoration: InputDecoration(
-              labelText: label,
-              labelStyle: const TextStyle(color: Colors.grey),
-              border: const OutlineInputBorder(),
-            ),
-          ),
+    return ListTile(
+      leading: Icon(icon, color: Colors.blue),
+      title: Text(
+        label,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.grey,
         ),
-      ],
+      ),
+      subtitle: Text(value),
+      contentPadding: const EdgeInsets.symmetric(vertical: 4.0),
     );
   }
 }
