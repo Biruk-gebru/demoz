@@ -113,26 +113,6 @@ Tests validate functionality, navigation, and input validation.
 
 ---
 
-## 🌟 Agile Development Workflow
-
-### Sprint Goals
-1. **Sprint 1**: Design and implement splash screen with animations.
-2. **Sprint 2**: Develop authentication screens with validation.
-3. **Sprint 3**: Integrate company registration and local storage.
-4. **Sprint 4**: Add unit and integration tests.
-
-### Backlog
-- **User Stories**:
-  - As a user, I want to register my company to manage payroll.
-  - As a company, I want to store employee data securely.
-
-- **Tasks**:
-  - Design reusable components (logo, input fields, buttons).
-  - Implement local storage using Hive.
-  - Validate form data for accuracy.
-
----
-
 ## 📈 Future Enhancements
 
 1. **Cloud Syncing**: Integrate Firebase for remote data storage.
