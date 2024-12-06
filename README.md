@@ -72,8 +72,8 @@ DemoZ Payroll Application streamlines payroll management, tax compliance, and em
 ### Steps to Run
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repository/demoZ-payroll.git
-   cd demoZ-payroll
+   git clone https://github.com/your-repository/demo.git
+   cd demoz
    ```
 
 2. Install dependencies:
