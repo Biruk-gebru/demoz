@@ -12,6 +12,7 @@ class _CompanyProfileScreenState extends State<CompanyProfileScreen> {
   late Box profileBox;
   int _currentIndex = 2;
 
+  // Default values for profile fields
   String companyName = 'Company Name';
   String email = 'xxx@gmail.com';
   String phoneNumber = '+0000000000';
@@ -28,14 +29,16 @@ class _CompanyProfileScreenState extends State<CompanyProfileScreen> {
     try {
       profileBox = await Hive.openBox('registration_data');
       setState(() {
+        // Retrieving the data stored in Hive
         companyName =
-            profileBox.get('companyName', defaultValue: companyName);
-        email = profileBox.get('email', defaultValue: email);
+            profileBox.get('Company name', defaultValue: companyName);
+        email = profileBox.get('email', defaultValue: email); // From SignUpScreen
         phoneNumber =
-            profileBox.get('phoneNumber', defaultValue: phoneNumber);
-        address = profileBox.get('address', defaultValue: address);
-        numberOfEmployees =
-            profileBox.get('numberOfEmployees', defaultValue: numberOfEmployees);
+            profileBox.get('Phone Number', defaultValue: phoneNumber);
+        address = profileBox.get('Address of the company', defaultValue: address);
+        numberOfEmployees = int.tryParse(
+            profileBox.get('Number of employees', defaultValue: '0')) ??
+            0;
       });
     } catch (e) {
       print('Error loading profile data: $e');

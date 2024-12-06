@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import '../../../../managment/presentation/screens/managment_screen.dart';
-import '../../widgets/dynamic_pie_chart.dart'; // Import the pie chart widget
+import '../../widgets/dynamic_pie_chart.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,6 +12,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   int numberOfEmployees = 0; // Default value
+  int maleEmployees = 0;
+  int femaleEmployees = 0;
 
   @override
   void initState() {
@@ -24,7 +25,18 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _loadDataFromHive() async {
     final box = await Hive.openBox('registration_data');
     setState(() {
-      numberOfEmployees = box.get('numberOfEmployees', defaultValue: 0);
+      numberOfEmployees = int.tryParse(
+          box.get('Number of employees', defaultValue: '0')) ??
+          0;
+
+      // Split employees into male and female based on number
+      if (numberOfEmployees % 2 == 0) {
+        maleEmployees = numberOfEmployees ~/ 2;
+        femaleEmployees = numberOfEmployees ~/ 2;
+      } else {
+        maleEmployees = numberOfEmployees ~/ 2 + 1;
+        femaleEmployees = numberOfEmployees ~/ 2;
+      }
     });
   }
 
@@ -57,20 +69,36 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _buildInfoCard('Number of Employees', '$numberOfEmployees',
-                    Colors.blue[50], Colors.blue),
                 _buildInfoCard(
-                    'Income Tax Paid', '2000', Colors.green[50], Colors.green),
+                  'Number of Employees',
+                  '$numberOfEmployees',
+                  Colors.blue[50],
+                  Colors.blue,
+                ),
+                _buildInfoCard(
+                  'Income Tax Paid',
+                  '0', // Placeholder for income tax
+                  Colors.green[50],
+                  Colors.green,
+                ),
               ],
             ),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _buildInfoCard('Pension Tax Paid', '4', Colors.teal[50],
-                    Colors.teal),
                 _buildInfoCard(
-                    'Employees Performance', '95 %', Colors.red[50], Colors.red),
+                  'Pension Tax Paid',
+                  '0', // Placeholder for pension tax
+                  Colors.teal[50],
+                  Colors.teal,
+                ),
+                _buildInfoCard(
+                  'Employees Performance',
+                  '95 %', // Placeholder for performance
+                  Colors.red[50],
+                  Colors.red,
+                ),
               ],
             ),
             const SizedBox(height: 20),
@@ -165,8 +193,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: _buildGraphCard(
                     title: 'Employee Composition',
                     content: EmployeeComposition(
-                      maleEmployees: 65,
-                      femaleEmployees: 35,
+                      maleEmployees: maleEmployees,
+                      femaleEmployees: femaleEmployees,
                     ),
                   ),
                 ),
