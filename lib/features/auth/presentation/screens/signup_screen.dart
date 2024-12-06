@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -39,13 +38,8 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   Future<void> _storeCredentials() async {
-    try {
-      final box = await Hive.openBox('registration_data');
-      box.put('email', _emailController.text);
-      box.put('password', _passwordController.text);
-    } catch (e) {
-      print('Error storing credentials: $e');
-    }
+    // Save the credentials (dummy implementation)
+    print('Credentials saved: ${_emailController.text}, ${_passwordController.text}');
   }
 
   void _onSignupPressed() {
@@ -91,14 +85,85 @@ class _SignupScreenState extends State<SignupScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Logo at the top-left corner
-              Container(
-                width: 50,
-                height: 50,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/logo.png'), // Replace with your logo
-                  ),
+              // Custom Logo ("S" shape with circles)
+              SizedBox(
+                width: 60, // Adjust width
+                height: 60, // Adjust height
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    // "S" shape
+                    SizedBox(
+                      width: 120, // Total width of the shape
+                      height: 200, // Total height of the shape
+                      child: Stack(
+                        children: [
+                          // Top half-circle
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Container(
+                              width: 47,
+                              height: 80,
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(100),
+                                  bottomLeft: Radius.circular(100),
+                                ),
+                              ),
+                            ),
+                          ),
+                          // Bottom half-circle with overlap
+                          Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Transform.translate(
+                              offset: const Offset(0, -80), // Move the bottom circle upwards
+                              child: Container(
+                                width: 47,
+                                height: 80,
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(100),
+                                    bottomRight: Radius.circular(100),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // Circles in front of the "S" shape
+                    Positioned(
+                      top: 0,
+                      right: 3, // Position the circles to the right
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          // Top circle
+                          Container(
+                            width: 50,
+                            height: 50,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFE0F7FA), // Light blue color
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                          const SizedBox(height: 10), // Spacing between the circles
+                          // Bottom circle
+                          Container(
+                            width: 50,
+                            height: 50,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFB3E5FC), // Slightly darker blue
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 20),
